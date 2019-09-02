@@ -1,8 +1,10 @@
 package com.example.nestedrecyclerview;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,12 +25,18 @@ public class RecyclerViewDataAdapter extends RecyclerView.Adapter<RecyclerViewDa
         this.mContext = context;
     }
 
+    @NonNull
     @Override
     public ItemRowHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item, null);
-        ItemRowHolder mh = new ItemRowHolder(v,viewGroup.getWidth());
+        if (v.getLayoutParams() != null){
+            v.getLayoutParams().width = viewGroup.getContext().getResources().getDisplayMetrics().widthPixels/4;
+        }else {
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(viewGroup.getContext().getResources().getDisplayMetrics().widthPixels/4, ViewGroup.LayoutParams.WRAP_CONTENT);
+                v.setLayoutParams(params);
+        }
 
-        return mh;
+        return new ItemRowHolder(v,viewGroup.getContext().getResources().getDisplayMetrics().widthPixels);
     }
 
     @Override
@@ -77,7 +85,7 @@ public class RecyclerViewDataAdapter extends RecyclerView.Adapter<RecyclerViewDa
             this.linLayout = (LinearLayout)view.findViewById(R.id.listItemLinLayout);
             this.itemTitle = (TextView) view.findViewById(R.id.itemTitle);
             this.recycler_view_list = (RecyclerView) view.findViewById(R.id.recycler_view_list);
-            this.recycler_view_list.getLayoutParams().width = width/4;
+            //this.recycler_view_list.getLayoutParams().width = width/4;
 
 
 
