@@ -48,14 +48,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createDummyData() {
-        for (int i = 1; i <= 54; i++) {
+        for (int i = 1; i <= 10; i++) {
 
             SectionDataModel dm = new SectionDataModel();
 
             dm.setHeaderTitle("Week " + i);
 
             ArrayList<SingleItemModel> singleItem = new ArrayList<SingleItemModel>();
-            for (int j = 0; j <= 5; j++) {
+            for (int j = 0; j <= 10; j++) {
                 singleItem.add(new SingleItemModel("Village " + j, "URL " + j));
             }
 

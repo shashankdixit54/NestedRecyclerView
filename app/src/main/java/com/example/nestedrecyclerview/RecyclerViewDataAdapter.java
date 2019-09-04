@@ -30,9 +30,14 @@ public class RecyclerViewDataAdapter extends RecyclerView.Adapter<RecyclerViewDa
     public ItemRowHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item, null);
         if (v.getLayoutParams() != null){
-            v.getLayoutParams().width = viewGroup.getContext().getResources().getDisplayMetrics().widthPixels/4;
+            //v.getLayoutParams().width = viewGroup.getContext().getResources().getDisplayMetrics().widthPixels/4;
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) v.getLayoutParams();
+            layoutParams.setMargins(5,5,5,5);
+            layoutParams.width = viewGroup.getContext().getResources().getDisplayMetrics().widthPixels/4;
+            v.setLayoutParams(layoutParams);
         }else {
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(viewGroup.getContext().getResources().getDisplayMetrics().widthPixels/4, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.setMargins(5,5,5,5);
                 v.setLayoutParams(params);
         }
 
